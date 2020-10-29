@@ -11,6 +11,7 @@ $(function() {
     //登录正则表达式认证
 
     var form = layui.form
+    var layer = layui.layer
     form.verify({
         pwd: [
             /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
@@ -55,7 +56,7 @@ $(function() {
             data: $(this).serialize(),
             success: function(res) {
                 if (res.status !== 0) {
-                    return layer.mag("获取信息失败")
+                    return layer.msg(res.message)
                 }
                 localStorage.setItem('token', res.token)
                 console.log("你好");
